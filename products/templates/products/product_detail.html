@@ -1,0 +1,30 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">{{ object.name }}</h2>
+          <img src="{{ object.image.url }}" alt="{{ object.name }}" class="img-fluid mb-3">
+          <p>{{ object.description }}</p>
+          <p>Author: {{ object.author }}</p>
+          <p>Price: {{ object.price }}</p>
+          <p>Category: {{ object.category }}</p>
+          <p>Stock Quantity: {{ object.stock_quantity }}</p>
+          
+          <!-- Add to Cart button -->
+          <form method="POST" action="{% url 'add-to-cart' object.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+          
+          <a href="{% url 'product-home' %}" class="btn btn-primary">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

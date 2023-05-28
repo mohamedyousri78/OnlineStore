@@ -1,0 +1,52 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+<div class="jumbotron mt-3 bg-white shadow-lg">
+    <div class="d-flex flex-wrap">
+      {% for product in products %}
+      <article class="media content-section shadow">
+        <div class="media-body">
+          <div class="article-metadata d-flex justify-content-between">
+            <h3>{{ product.name }}</h3>
+            <small class="text-muted">{{ product.created_at|date:"F d, Y" }}</small>
+          </div>
+          <div class="text-center">
+            <div class="image-frame">
+                <a href="{% url 'product-detail' product.pk %}" target="_blank">
+                <img src="{{ product.image.url }}" alt="" class="article-img img-thumbnail img-fluid shadow">
+              </a>
+            </div>
+          </div>
+          <p class="article-content text-justify text-truncate overflow-hidden">{{ product.description }}</p>
+          <p class="text-muted">Author: {{ product.author }}</p>
+          <div class="form-group mt-0 pt-0 m-2">
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+
+ 
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+  {% endif %}
+{% endblock %}
