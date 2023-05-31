@@ -18,11 +18,7 @@
           {% for item in cart_items %}
             <tr>
               <td>{{ item.product.name }}</td>
-              <td>
-                <a href="{% url 'products:product-detail' item.product.pk %}">
-                  <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail" width="100">
-                </a>
-              </td>
+              <td><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail" width="100"></td>
               <td>{{ item.quantity }}</td>
               <td>
                 <form action="{% url 'cart:remove_from_cart' item.id %}" method="POST">
