@@ -4,6 +4,7 @@ from .models import Product
 from django.contrib.staticfiles.views import serve
 from django.shortcuts import get_object_or_404, redirect
 from cart.models import Cart, CartItem
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -32,7 +33,7 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
 
-
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     
