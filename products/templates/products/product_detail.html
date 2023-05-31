@@ -20,6 +20,12 @@
             <button type="submit" class="btn btn-primary">Add to Cart</button>
           </form>
           
+          <!-- Add to Wishlist button -->
+          <form method="POST" action="{% url 'wishlist:add_to_wishlist' object.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Add to Wishlist</button>
+          </form>
+          
           <a href="{% url 'product-home' %}" class="btn btn-primary">Back</a>
         </div>
       </div>

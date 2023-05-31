@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('products.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
     #path('profile/', user_views.profile, name='profile'),
+    path('orders/', include('orders.urls')),
 
 
 ]

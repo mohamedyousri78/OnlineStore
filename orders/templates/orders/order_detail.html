@@ -1,0 +1,31 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Order Detail</h1>
+    <h3>Order #: {{ order.pk }}</h3>
+    <p>Created at: {{ order.created_at }}</p>
+    <p>Total Price: ${{ order.total_price }}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order_items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.price }}</td>
+            <td>${{ item.subtotal }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
