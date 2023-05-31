@@ -16,9 +16,16 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
-    stock_quantity = models.PositiveIntegerField()
+    stock_quantity = models.PositiveIntegerField(default=0)
     author = models.CharField(max_length=100, default="amazon")
+    
 
+    def reduce_stock_quantity(self, quantity):
+        if self.stock_quantity >= quantity:
+            self.stock_quantity -= quantity
+            self.save()
+        else:
+            raise ValueError("Insufficient stock quantity")
     def __str__(self):
         return self.name
 

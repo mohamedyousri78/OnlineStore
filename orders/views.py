@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Order, OrderItem
 from .forms import OrderForm
 from cart.models import CartItem
+
 @login_required
 def create_order(request):
     order_price = 0  # Initialize order_price variable
@@ -16,7 +18,17 @@ def create_order(request):
             order = form.save(commit=False)
             order.user = request.user
             order.total_price = order_price  # Set the total_price field
-            print(order.total_price)
+            
+            # Check if requested quantity exceeds available quantity
+            for item in cart_items:
+                if item.product.stock_quantity < item.quantity:
+                    messages.error(request, f"Requested quantity for {item.product.name} exceeds available quantity.")
+                    return redirect('orders:create_order')
+            
+            # Reduce the quantities of products and save them
+            for item in cart_items:
+                item.product.reduce_stock_quantity(item.quantity)
+            
             order.save()
             
             for item in cart_items:
