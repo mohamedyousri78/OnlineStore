@@ -4,24 +4,23 @@
 <div class="jumbotron mt-3 bg-white shadow-lg">
     <div class="d-flex flex-wrap">
       {% for product in products %}
-      <article class="media content-section shadow">
+      <article class="media content-section shadow" style="width:300px; padding: 10px; margin: 20px">
+        <a href="{% url 'product-detail' product.pk %}">
         <div class="media-body">
           <div class="article-metadata d-flex justify-content-between">
             <h3>{{ product.name }}</h3>
-            <small class="text-muted">{{ product.created_at|date:"F d, Y" }}</small>
           </div>
           <div class="text-center">
-            <div class="image-frame">
-                <a href="{% url 'product-detail' product.pk %}" target="">
+            <div class="image-frame" style="width:100px">
                 <img src="{{ product.image.url }}" alt="" class="article-img img-thumbnail img-fluid shadow">
-              </a>
+            
             </div>
           </div>
-          <p class="article-content text-justify text-truncate overflow-hidden">{{ product.description }}</p>
           <p class="text-muted">Author: {{ product.author }}</p>
           <div class="form-group mt-0 pt-0 m-2">
           </div>
         </div>
+      </a>
       </article>
       {% endfor %}
     </div>
