@@ -1,6 +1,6 @@
 # OnlineStore
 
-This project wsa done using Django framewarok
+This project was done using Python - Django framewarok. the UI using DTL and Bootstrab.
 
 ## Install and runserver
 
@@ -29,7 +29,11 @@ Trello was used to manage our workflow, here is an invitation to view our Board
 
 
 ## Plaining and Design
-
+we simulated the whole process of software engineering.
+starting from requirement analysis till the testing and QA.
+we wrote user stories, and made UML usecase diagrams for each requirement.
+Then we mapped them into activity diagrams and sequence diagrams. For the software architacture we designed a componant diagram.
+and for the software design we made a class diagram and ER diagram for the database design.
 The associated plaining and design diagrams was uploaded on the this drive link:
 
 `https://drive.google.com/drive/folders/1k7h4BWK5QKujG5UPFhhbne5Lo4Evsode?usp=sharing`
