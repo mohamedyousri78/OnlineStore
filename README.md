@@ -1,6 +1,6 @@
 # OnlineStore
 
-This project was done using Python - Django framewarok. the UI using DTL and Bootstrab.
+This project was done using Python - Django framewarok. the UI using DTL and Bootstrap.
 
 ## Install and runserver
 
@@ -9,10 +9,12 @@ This project was done using Python - Django framewarok. the UI using DTL and Boo
 cd OnlineStore
 ```
 
+
 2. Install requirments to run the project from cmd
 ```
 pip install -r requirements.txt
 ```
+
 
 3. Run the the server from the same directory using cmd
 ```
